@@ -18,7 +18,7 @@
  * © Copyright IBM Corp. 2015-2017
  */
 
-require( 'dotenv' ).config( {silent: true} );
+// require( 'dotenv' ).config( {silent: true} );
 
 var Kafka = require('node-rdkafka');
 var MessageHubAdminRest = require('message-hub-rest');
@@ -57,6 +57,13 @@ var restEndpoint = process.env.restURL;
 var apiKey = process.env.apiKey;
 opts.username = process.env.username;
 opts.password = process.env.password;
+
+console.log("Rest End point : "+restEndpoint);
+console.log("apiKey : "+apiKey);
+console.log("opts.username : "+opts.username);
+console.log("opts.brokers : "+opts.brokers);
+console.log("opts.password : "+opts.password);
+
 services = {
     "messagehub": [
         {

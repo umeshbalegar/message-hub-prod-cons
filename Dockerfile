@@ -5,7 +5,7 @@
 # OR
 # docker run --rm -it node-rdkafka <kafka_brokers_sasl> <kafka_admin_url> <api_key> <ca_location>
 #
-FROM node:boron
+FROM node:latest
 
 RUN  apt-get update -qqy \
   && apt-get install -y --no-install-recommends \

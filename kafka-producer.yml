@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka-producer-njs
+  labels:
+    name: kafka-producer-njs
+spec:
+  containers:
+    - name: kafka-producer-njs
+      image: umeshbalegar/kafka-producer-njs:latest
+      env:
+        - name: brokers
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: brokers
+        - name: username
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: username                 
+        - name: password
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: password  
+        - name: apiKey
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: apiKey
+        - name: adminURL
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: adminURL
+        - name: restURL
+          valueFrom:
+            secretKeyRef:
+              name: kafka-instance
+              key: restURL   
+      ports:
+        - containerPort: 8080
+         
+---
+# apiVersion: extensions/v1beta1
+# kind: Deployment
+# metadata:
+#   name: kafka-producer-njs-v1
+# spec:
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: kafka-producer-njs
+#         version: v1  
+#     spec:
+#       containers:
+#       - name: kafka-producer-njs
+#         image: umeshbalegar/kafka-producer-njs:latest
+#         imagePullPolicy: Always
+#         env:
+#           - name: brokers
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: brokers
+#           - name: username
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: username                 
+#           - name: password
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: password  
+#           - name: apiKey
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: apiKey
+#           - name: adminURL
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: adminURL
+#           - name: restURL
+#             valueFrom:
+#               secretKeyRef:
+#                 name: kafka-instance
+#                 key: restURL                                
+#         ports:
+#         - containerPort: 8080   
+
